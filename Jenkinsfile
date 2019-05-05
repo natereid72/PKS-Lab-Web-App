@@ -42,7 +42,11 @@ pipeline {
       steps {
         container('maven') {
           dir('web'){
-            sh 'helm delete web-app --purge'
+            
+            do
+            sh 'helm delete web-app --purge' || true
+            done
+            
             sh 'helm install --name web-app ./'
           }
         }
