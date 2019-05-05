@@ -42,7 +42,7 @@ pipeline {
       steps {
         container('maven') {
           dir('web'){
-            sh 'jx step helm install web'
+            sh 'jx step helm install ./'
           }
         }
       }
