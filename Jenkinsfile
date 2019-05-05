@@ -40,7 +40,7 @@ pipeline {
       }
       steps {
         container('maven') {
-          dir('web'){        
+          dir('web'){
             sh 'jx step helm apply'
           }
         }
@@ -48,4 +48,3 @@ pipeline {
     }
   }
 }
-
