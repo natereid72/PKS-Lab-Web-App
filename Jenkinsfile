@@ -6,13 +6,13 @@ pipeline {
     label "jenkins-maven"
   }
   environment {
-    DEPLOY_NAMESPACE = "jx-production"
+    DEPLOY_NAMESPACE = "web-production"
   }
   stages {
     stage('Validate Environment') {
       steps {
         container('maven') {
-          dir('env') {
+          dir('web') {
             sh 'jx step helm build'
           }
         }
@@ -24,7 +24,7 @@ pipeline {
       }
       steps {
         container('maven') {
-          dir('env') {
+          dir('web') {
             sh 'jx step helm apply'
           }
         }
