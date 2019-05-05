@@ -43,6 +43,7 @@ pipeline {
         container('maven') {
           dir('web'){
             
+            while ...
             do
             sh 'helm delete web-app --purge' || true
             done
