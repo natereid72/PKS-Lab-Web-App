@@ -42,7 +42,7 @@ pipeline {
       steps {
         container('maven') {
           dir('web'){
-            sh 'helm upgrade ./'
+            sh 'helm upgrade web-app ./'
           }
         }
       }
