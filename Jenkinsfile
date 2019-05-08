@@ -17,7 +17,7 @@ pipeline {
             script {
               docker.withRegistry('http://harbor.corp.local', registryCredential) {
                 def dockerfile = 'dockerfile-app1'
-                def customImage = docker.build("corp-web/app1:v1", "-f ${dockerfile} ./")
+                def customImage = docker.build("corp-web/app1:0.0.1", "-f ${dockerfile} ./")
                 customImage.push()
               }
             }
