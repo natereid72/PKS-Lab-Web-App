@@ -29,8 +29,8 @@ pipeline {
       steps {
         container('maven') {
           dir('web') {
-            sh 'jx step helm build'
             sh 'jx step helm version'
+            sh 'jx step helm build'
           }
         }
       }
