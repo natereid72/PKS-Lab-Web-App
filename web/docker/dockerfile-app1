@@ -1,2 +1,2 @@
-FROM nginx:stable-alpine
+FROM nginx:lates
 COPY /source/app1 /usr/share/nginx/html
