@@ -29,7 +29,6 @@ pipeline {
       steps {
         container('maven') {
           dir('web') {
-            sh 'jx step helm version'
             sh 'jx step helm build'
           }
         }
@@ -42,7 +41,8 @@ pipeline {
       steps {
         container('maven') {
           dir('web'){
-          sh 'jx step helm apply'
+          sh 'helm delete web-app --purge || true'
+          sh 'helm install --name web-app ./'
        }
         }
       }
