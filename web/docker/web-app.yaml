@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-green-web
+  labels:
+    app: blue-green-web
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: blue-green-web
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-green-web
+  labels:
+    app: blue-green-web
+    tier: frontend
+spec:
+  selector:
+    matchLabels:
+      app: blue-green-web
+      tier: frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+    type: RollingUpdate
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: blue-green-web
+        tier: frontend
+    spec:
+      containers:
+      - image: natereid/webapp:1.0.0
+        name: blue-green-web
+        ports:
+        - containerPort: 80
+          name: web
+
