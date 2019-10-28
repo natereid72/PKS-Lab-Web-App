@@ -25,10 +25,11 @@ spec:
       app: blue-green-web
       tier: frontend
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 0
-    type: RollingUpdate
+    type: Recreate
+#    rollingUpdate:
+#      maxSurge: 25%
+#      maxUnavailable: 0
+#    type: RollingUpdate
   replicas: 4
   template:
     metadata:
@@ -37,7 +38,8 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: natereid/webapp:1.0.0
+      - image: natereid/webapp:2.0.0
+        imagePullPolicy: Always
         name: blue-green-web
         ports:
         - containerPort: 80
